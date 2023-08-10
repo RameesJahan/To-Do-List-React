@@ -6,18 +6,22 @@ import Dialog from "./Dialog";
 const TodoList = ({todos,setTodos}) => {
   
   const [showDialog, setShowDialog] = useState(false);
+  const [dltId, setDltId] = useState('');
   
   const handleDelete = (id) => {
+    setDltId(id)
     setShowDialog(true);
   };
   
   const handleDialogCancel = () => {
     setShowDialog(false)
+    setDltId("")
   }
   
-  const handleDialogRemove = (id) => {
-    setTodos(todos.filter((obj) => obj.id !== id));
+  const handleDialogRemove = () => {
+    setTodos((eTodos) => eTodos.filter((obj) => obj.id !== dltId));
     setShowDialog(false)
+    setDltId("")
   }
   
   return (
@@ -28,13 +32,11 @@ const TodoList = ({todos,setTodos}) => {
             <p className="text-center">No Tasks</p>
           ) : (
             todos.map((obj) => (
-              <div key={obj.id}>
-                <TodoItem obj={obj} setTodos={setTodos} onDelete={()=>handleDelete(obj.id)}/>
-                {showDialog&&<Dialog onCancel={handleDialogCancel} onRemove={()=>{handleDialogRemove(obj.id)}}/>}
-              </div>
+                <TodoItem key={obj.id} obj={obj} setTodos={setTodos} onDelete={() => handleDelete(obj.id)}/>
             ))
           )}
         </ul>
+        {showDialog&&(<Dialog onCancel={handleDialogCancel} onRemove={handleDialogRemove}/>)}
       </div>
   )
 }

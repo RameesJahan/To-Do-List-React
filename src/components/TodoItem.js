@@ -44,6 +44,8 @@ const TodoItem = ({obj,setTodos,onDelete}) => {
           return obj;
         })
       );
+    }else{
+      handleCancel(id);
     }
   }
   
@@ -61,7 +63,7 @@ const TodoItem = ({obj,setTodos,onDelete}) => {
   }
   
   return (
-           <li done={obj.done.toString()}>
+           <li className="list-item" done={obj.done.toString()}>
                 {obj.isEdit?(
                   <>
                     <input 
@@ -69,6 +71,7 @@ const TodoItem = ({obj,setTodos,onDelete}) => {
                       type="text" 
                       onChange={(e) => setETodo(e.target.value)}
                       value={eTodo} 
+                      placeholder="Enter task.."
                     />
                     <i onClick={() => handleSave(obj.id,eTodo)} 
                        className="fa fa-floppy-disk"

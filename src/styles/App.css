@@ -18,8 +18,9 @@ body{
   background:#E3E9FF;
   min-height:100svh;
   width: 100%;
-  display: grid;
-  place-items:center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* .content{
@@ -48,7 +49,7 @@ p{
   padding: 12px;
   background: #ffffff;
   width: 100%;
-  max-width: 540px;
+  max-width:min(100%,540px);
   margin: 20px;
   border-radius: 5px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
@@ -98,7 +99,7 @@ h2{
   padding: 5px;
 }
 
-.todo-list li{
+.todo-list li.list-item{
   display: flex;
   align-items: center;
   border: 1px solid #CFD2DB;
@@ -107,26 +108,31 @@ h2{
   border-radius: 3px;
 }
 
-.todo-list li p{
+.todo-list li.list-item p{
   flex: 1;
+  overflow-x: scroll;
+  white-space: nowrap;
+}
+.todo-list li.list-item p::-webkit-scrollbar{
+  display: none;
 }
 
-.todo-list li input[type=text]{
+.todo-list li.list-item input[type=text]{
   font-size: 1rem;
   flex: 1;
   border: none;
 }
 
-.todo-list li input[type=text]:focus{
+.todo-list li.list-item input[type=text]:focus{
   outline: none;
 }
 
-.todo-list li[done="true"] p{
+.todo-list li.list-item[done="true"] p{
   text-decoration: line-through;
   color: #b2b5bf;
 }
 
-.todo-list li[done="false"] .fa-check{
+.todo-list li.list-item[done="false"] .fa-check{
   display: none;
 }
 

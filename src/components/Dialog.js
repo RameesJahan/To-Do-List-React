@@ -1,3 +1,5 @@
+import React from "react";
+
 function Dialog({onCancel,onRemove}) {
   return (
     <div className="dm-background">
